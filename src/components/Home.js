@@ -9,16 +9,16 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
 //Local Status Components
-import TotalInfected_Local from './Elements/Local/TotalInfected'
-import TotalUnderObservation_Local from './Elements/Local/TotalUnderObservation'
-import TotalCured_Local from './Elements/Local/TotalCured'
-import TotalDeaths_Local from './Elements/Local/TotalDeaths'
+import TotalInfectedLocal from './Elements/Local/TotalInfected'
+import TotalUnderObservationLocal from './Elements/Local/TotalUnderObservation'
+import TotalCuredLocal from './Elements/Local/TotalCured'
+import TotalDeathsLocal from './Elements/Local/TotalDeaths'
 
 //Global Status Components
-import TotalInfected_Global from './Elements/Global/TotalInfected'
-import TotalNewCases_Global from './Elements/Global/TotalNewCases'
-import TotalCured_Global from './Elements/Global/TotalCured'
-import TotalDeaths_Global from './Elements/Global/TotalDeaths'
+import TotalInfectedGlobal from './Elements/Global/TotalInfected'
+import TotalNewCasesGlobal from './Elements/Global/TotalNewCases'
+import TotalCuredGlobal from './Elements/Global/TotalCured'
+import TotalDeathsGlobal from './Elements/Global/TotalDeaths'
 import Appbar from './Appbar'
 
 
@@ -67,16 +67,16 @@ class Home extends Component {
                     <Grid container spacing={2} item md={12}>
 
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalInfected_Local local_cases={this.props.data.local_total_cases} last_updated={this.props.data.update_date_time} />
+                            <TotalInfectedLocal local_cases={this.props.data.local_total_cases} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalUnderObservation_Local under_observation={this.props.data.local_total_number_of_individuals_in_hospitals} last_updated={this.props.data.update_date_time} />
+                            <TotalUnderObservationLocal under_observation={this.props.data.local_total_number_of_individuals_in_hospitals} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalCured_Local local_cured={this.props.data.local_recovered} last_updated={this.props.data.update_date_time} />
+                            <TotalCuredLocal local_cured={this.props.data.local_recovered} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalDeaths_Local local_deaths={this.props.data.local_deaths} last_updated={this.props.data.update_date_time} />
+                            <TotalDeathsLocal local_deaths={this.props.data.local_deaths} last_updated={this.props.data.update_date_time} />
                         </Grid>
                     </Grid>
                     <div style={{ padding: 10 }}>
@@ -88,16 +88,16 @@ class Home extends Component {
 
 
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalNewCases_Global new_cases={this.props.data.global_new_cases} last_updated={this.props.data.update_date_time} />
+                            <TotalNewCasesGlobal new_cases={this.props.data.global_new_cases} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalInfected_Global total_infection={this.props.data.global_total_cases} last_updated={this.props.data.update_date_time} />
+                            <TotalInfectedGlobal total_infection={this.props.data.global_total_cases} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalCured_Global total_cured={this.props.data.global_recovered} last_updated={this.props.data.update_date_time} />
+                            <TotalCuredGlobal total_cured={this.props.data.global_recovered} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalDeaths_Global total_deaths={this.props.data.global_deaths} last_updated={this.props.data.update_date_time} />
+                            <TotalDeathsGlobal total_deaths={this.props.data.global_deaths} last_updated={this.props.data.update_date_time} />
                         </Grid>
                     </Grid>
 
