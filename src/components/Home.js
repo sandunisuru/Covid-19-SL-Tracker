@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux';
 import { fetchData } from '../actions/dataActions'
 import PropTypes from 'prop-types';
