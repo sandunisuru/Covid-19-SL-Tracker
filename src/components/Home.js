@@ -6,12 +6,22 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions/dataActions'
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
 
-import TotalInfected from './Elements/TotalInfected'
-import TotalUnderObservation from './Elements/TotalUnderObservation'
-import TotalCured from './Elements/TotalCured'
-import TotalDeaths from './Elements/TotalDeaths'
+//Local Status Components
+import TotalInfected_Local from './Elements/Local/TotalInfected'
+import TotalUnderObservation_Local from './Elements/Local/TotalUnderObservation'
+import TotalCured_Local from './Elements/Local/TotalCured'
+import TotalDeaths_Local from './Elements/Local/TotalDeaths'
+
+//Global Status Components
+import TotalInfected_Global from './Elements/Global/TotalInfected'
+import TotalNewCases_Global from './Elements/Global/TotalNewCases'
+import TotalCured_Global from './Elements/Global/TotalCured'
+import TotalDeaths_Global from './Elements/Global/TotalDeaths'
 import Appbar from './Appbar'
+
+
 
 
 class Home extends Component {
@@ -44,23 +54,50 @@ class Home extends Component {
 
 
         return (
-            
-            <div className="App">
-                <Appbar/>
-                <Grid container style={{paddingTop: 20, justifyContent: 'center'}} spacing={1} >
 
-                    <Grid container spacing={2}  item md={12}>
+            <div className="App">
+                <Appbar />
+                <Grid container style={{ paddingTop: 5 }} spacing={1} >
+                    <div style={{ padding: 10 }}>
+                        <Typography variant="h5" gutterBottom>
+                            Local Status
+                        </Typography>
+                    </div>
+
+                    <Grid container spacing={2} item md={12}>
+
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalInfected local_cases={this.props.data.local_total_cases} last_updated={this.props.data.update_date_time}/>
+                            <TotalInfected_Local local_cases={this.props.data.local_total_cases} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalUnderObservation under_observation={this.props.data.local_total_number_of_individuals_in_hospitals} last_updated={this.props.data.update_date_time}/>
+                            <TotalUnderObservation_Local under_observation={this.props.data.local_total_number_of_individuals_in_hospitals} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalCured local_cured={this.props.data.local_recovered} last_updated={this.props.data.update_date_time}/>
+                            <TotalCured_Local local_cured={this.props.data.local_recovered} last_updated={this.props.data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalDeaths local_deaths={this.props.data.local_deaths} last_updated={this.props.data.update_date_time}/>
+                            <TotalDeaths_Local local_deaths={this.props.data.local_deaths} last_updated={this.props.data.update_date_time} />
+                        </Grid>
+                    </Grid>
+                    <div style={{ padding: 10 }}>
+                        <Typography variant="h5" gutterBottom>
+                            Global Status
+                        </Typography>
+                    </div>
+                    <Grid container spacing={2} item md={12}>
+
+
+                        <Grid item md={3} xs={12} spacing={2}>
+                            <TotalNewCases_Global new_cases={this.props.data.global_new_cases} last_updated={this.props.data.update_date_time} />
+                        </Grid>
+                        <Grid item md={3} xs={12} spacing={2}>
+                            <TotalInfected_Global total_infection={this.props.data.global_total_cases} last_updated={this.props.data.update_date_time} />
+                        </Grid>
+                        <Grid item md={3} xs={12} spacing={2}>
+                            <TotalCured_Global total_cured={this.props.data.global_recovered} last_updated={this.props.data.update_date_time} />
+                        </Grid>
+                        <Grid item md={3} xs={12} spacing={2}>
+                            <TotalDeaths_Global total_deaths={this.props.data.global_deaths} last_updated={this.props.data.update_date_time} />
                         </Grid>
                     </Grid>
 
