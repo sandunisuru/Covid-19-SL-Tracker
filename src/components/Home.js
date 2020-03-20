@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux';
 import { fetchData } from '../actions/dataActions'
 import PropTypes from 'prop-types';
@@ -40,17 +39,17 @@ class Home extends Component {
 
         console.log(this.props.data)
 
-        const useStyles = makeStyles(theme => ({
-            root: {
-                padding: theme.spacing(2),
-                flexGrow: 1,
-            },
-            paper: {
-                padding: theme.spacing(0),
-                textAlign: 'center',
-                color: theme.palette.text.secondary,
-            },
-        }));
+        // const useStyles = makeStyles(theme => ({
+        //     root: {
+        //         padding: theme.spacing(2),
+        //         flexGrow: 1,
+        //     },
+        //     paper: {
+        //         padding: theme.spacing(0),
+        //         textAlign: 'center',
+        //         color: theme.palette.text.secondary,
+        //     },
+        // }));
 
 
         return (
