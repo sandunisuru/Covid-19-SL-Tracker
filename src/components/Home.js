@@ -100,22 +100,6 @@ class Home extends Component {
                             <TotalDeathsGlobal total_deaths={this.props.data.global_deaths} last_updated={this.props.data.update_date_time} />
                         </Grid>
                     </Grid>
-
-                    <Grid item xs={6}>
-                        <Paper className={useStyles.paper}>xs=6</Paper>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Paper className={useStyles.paper}>xs=3</Paper>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Paper className={useStyles.paper}>xs=3</Paper>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Paper className={useStyles.paper}>xs=3</Paper>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Paper className={useStyles.paper}>xs=3</Paper>
-                    </Grid>
                 </Grid>
             </div>
         );
