@@ -3,6 +3,7 @@ import '../App.css';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions/dataActions'
+import {readLatest} from '../actions/newsActions';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
@@ -17,7 +18,10 @@ import TotalInfectedGlobal from './Elements/Global/TotalInfected'
 import TotalNewCasesGlobal from './Elements/Global/TotalNewCases'
 import TotalCuredGlobal from './Elements/Global/TotalCured'
 import TotalDeathsGlobal from './Elements/Global/TotalDeaths'
-import Appbar from './Appbar'
+
+
+//NewsFeed Import
+import NewsFeed from './Elements/News/NewsFeed'
 
 
 
@@ -27,34 +31,19 @@ class Home extends Component {
 
     interval = setInterval(() => {
         this.props.fetchData();
-    }, 60000);
+    }, 300000);
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchData();
-    }
+        this.props.readLatest();
+    }    
 
 
     render() {
 
-        console.log(this.props.data)
-
-        // const useStyles = makeStyles(theme => ({
-        //     root: {
-        //         padding: theme.spacing(2),
-        //         flexGrow: 1,
-        //     },
-        //     paper: {
-        //         padding: theme.spacing(0),
-        //         textAlign: 'center',
-        //         color: theme.palette.text.secondary,
-        //     },
-        // }));
-
-
         return (
 
             <div className="App">
-                <Appbar />
                 <Grid container style={{ paddingTop: 5 }} spacing={1} >
                     <div style={{ padding: 10 }}>
                         <Typography variant="h5" gutterBottom>
@@ -98,6 +87,28 @@ class Home extends Component {
                             <TotalDeathsGlobal total_deaths={this.props.data.global_deaths} last_updated={this.props.data.update_date_time} />
                         </Grid>
                     </Grid>
+                    <Grid container spacing={2} item md={12}>
+                        <Grid item md={4} xs={12} spacing={2}>
+                            <div style={{ padding: 10 }}>
+                                <Typography variant="h5" gutterBottom>
+                                    Latest News Headlines
+                                </Typography>
+                            </div>
+                            <NewsFeed />
+                        </Grid>
+                        <Grid item md={8} xs={12} spacing={2}>
+                            <TotalNewCasesGlobal new_cases={this.props.data.global_new_cases} last_updated={this.props.data.update_date_time} />
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={2} item md={12}>
+                        <Grid item md={12} xs={12} spacing={2}>
+                            <div style={{ padding: 10, textAlign: 'center' }}>
+                                <Typography variant="h8" gutterBottom>
+                                    Data Source  |  Epidemiology Unit, Ministry of Health, Sri Lanka
+                                </Typography>
+                            </div>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </div>
         );
@@ -106,10 +117,13 @@ class Home extends Component {
 
 Home.prototypes = {
     fetchData: PropTypes.func.isRequired,
+    readLatest: PropTypes.func.isRequired,
     data: PropTypes.array.isRequired
 }
 const mapStatetoProps = state => ({
-    data: state.data.data
+    data: state.data.data,
+    news: state.news.data,
+    latest: state.news.latest
 })
 
-export default connect(mapStatetoProps, { fetchData })(Home);
+export default connect(mapStatetoProps, { fetchData, readLatest })(Home);

@@ -16,9 +16,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 
-
-
 import clsx from 'clsx';
+
+import {
+    BrowserRouter as Router,
+    Link
+  } from "react-router-dom";
 
 
 
@@ -68,7 +71,7 @@ function Appbar(props) {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <div style={{marginTop:'100%'}}/>
+            <div style={{ marginTop: '100%' }} />
             <Divider />
             <List>
                 {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -102,7 +105,6 @@ function Appbar(props) {
                     <Typography variant="h6" className={classes.title}>
                         Covid-19 Tracker
           </Typography>
-                    <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
             <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
