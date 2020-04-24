@@ -3,7 +3,8 @@ import '../App.css';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions/dataActions'
-import {readLatest} from '../actions/newsActions';
+import { readLatest } from '../actions/newsActions';
+import { getAllCountries } from '../actions/graphActions';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
@@ -19,6 +20,9 @@ import TotalNewCasesGlobal from './Elements/Global/TotalNewCases'
 import TotalCuredGlobal from './Elements/Global/TotalCured'
 import TotalDeathsGlobal from './Elements/Global/TotalDeaths'
 
+//Graphs Module Components
+import AllGraphs from './Elements/graphs/AllGraphs'
+
 
 //NewsFeed Import
 import NewsFeed from './Elements/News/NewsFeed'
@@ -28,15 +32,22 @@ import NewsFeed from './Elements/News/NewsFeed'
 
 class Home extends Component {
 
+    constructor(props){
+        super(props)
+
+        props.getAllCountries();
+    }
+
 
     interval = setInterval(() => {
         this.props.fetchData();
     }, 300000);
 
     componentDidMount() {
+        
         this.props.fetchData();
         this.props.readLatest();
-    }    
+    }
 
 
     render() {
@@ -94,10 +105,19 @@ class Home extends Component {
                                     Latest News Headlines
                                 </Typography>
                             </div>
+                            
                             <NewsFeed />
                         </Grid>
                         <Grid item md={8} xs={12} spacing={2}>
-                            <TotalNewCasesGlobal new_cases={this.props.data.global_new_cases} last_updated={this.props.data.update_date_time} />
+                            <div style={{ padding: 10 }}>
+                                <Typography variant="h5" gutterBottom>
+                                    Global Condition and History
+                                </Typography>
+                            </div>
+                            {
+                                this.props.countries?<AllGraphs />:<Typography variant="h8" gutterBottom>Loading...</Typography>
+                            }
+                           
                         </Grid>
                     </Grid>
                     <Grid container spacing={2} item md={12}>
@@ -118,12 +138,14 @@ class Home extends Component {
 Home.prototypes = {
     fetchData: PropTypes.func.isRequired,
     readLatest: PropTypes.func.isRequired,
+    getAllCountries: PropTypes.func.isRequired,
     data: PropTypes.array.isRequired
 }
 const mapStatetoProps = state => ({
     data: state.data.data,
     news: state.news.data,
-    latest: state.news.latest
+    latest: state.news.latest,
+    countries: state.graph.countries
 })
 
-export default connect(mapStatetoProps, { fetchData, readLatest })(Home);
+export default connect(mapStatetoProps, { fetchData, readLatest, getAllCountries })(Home);

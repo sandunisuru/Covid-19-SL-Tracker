@@ -9,28 +9,6 @@ import NewsItem from './NewsItem'
 
 class NewsFeed extends Component {
 
-    news = [
-        {
-            id: 0,
-            text: "Hello World 1",
-            date: "2020-03-02"
-        },
-        {
-            id: 1,
-            text: "Hello World 2",
-            date: "2020-03-05"
-        },
-        {
-            id: 2,
-            text: "Hello World 3",
-            date: "2020-03-07"
-        },
-        {
-            id: 3,
-            text: "Hello World 4",
-            date: "2020-03-12"
-        }
-    ]
 
     componentDidMount() {
         this.props.fetchNews();
@@ -61,7 +39,7 @@ class NewsFeed extends Component {
         }
         return (
             <div>
-                <h4>No any Latest News!</h4>
+                <h4>Loading...</h4>
             </div>
         );
     }
