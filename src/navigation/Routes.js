@@ -1,6 +1,6 @@
-import Home from './components/Home';
-import AddNews from './components/AddNews';
-import About from './components/About';
+import Home from '../components/Home';
+import AddNews from '../components/AddNews';
+import About from '../components/About';
 
 
 export const getAllRoutes = () => {

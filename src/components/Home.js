@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../App/App.css';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions/dataActions'
