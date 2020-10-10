@@ -15,6 +15,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import {useHistory} from 'react-router-dom'
 
 import clsx from 'clsx';
 
@@ -46,6 +47,7 @@ const useStyles = makeStyles(theme => ({
 function Appbar(props) {
 
     const classes = useStyles();
+    const history = useHistory();
 
     const [state, setState] = React.useState({
         top: false,
@@ -74,18 +76,11 @@ function Appbar(props) {
             <div style={{ marginTop: '100%' }} />
             <Divider />
             <List>
-                {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))} */}
-
-                <ListItem button key={"Home"}>
+                <ListItem onClick={() => history.push("/")} button key={"Home"}>
                     <ListItemIcon><HomeIcon /></ListItemIcon>
                     <ListItemText primary={"Home"} />
                 </ListItem>
-                <ListItem button key={"About us"}>
+                <ListItem onClick={() => history.push("/about")} button key={"About us"}>
                     <ListItemIcon><InfoIcon /></ListItemIcon>
                     <ListItemText primary={"About us"} />
                 </ListItem>
