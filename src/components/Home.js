@@ -7,6 +7,7 @@ import { readLatest } from '../actions/newsActions';
 import { getAllCountries } from '../actions/graphActions';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 //Local Status Components
 import TotalInfectedLocal from './Elements/Local/TotalInfected'
@@ -123,8 +124,8 @@ class Home extends Component {
                     <Grid container spacing={2} item md={12}>
                         <Grid item md={12} xs={12} spacing={2}>
                             <div style={{ padding: 10, textAlign: 'center' }}>
-                                <Typography variant="h8" gutterBottom>
-                                    Data Source  |  Epidemiology Unit, Ministry of Health, Sri Lanka
+                                <Typography variant="h6" gutterBottom>
+                                    Made with <FavoriteIcon color="error"/> by Sandun
                                 </Typography>
                             </div>
                         </Grid>

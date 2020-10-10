@@ -3,14 +3,14 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import Home from './components/Home'
-import AddNews from './components/AddNews'
+import AddNews from './components/AddNews';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 import Appbar from './components/Appbar'
-
+import {getAllRoutes} from './Routes'
 import store from './store'
 
 function App() {
@@ -18,15 +18,16 @@ function App() {
 
     <Provider store={store}>
       <div className="App">
-        <Appbar/>
         <Router>
+          <Appbar />
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/add">
-              <AddNews />
-            </Route>
+            {getAllRoutes().map(route => (
+              <Route
+              key={route.path || 'nopath'}
+              path={route.path}
+              exact={route.exact}
+              component={route.component}/>
+            ))}
           </Switch>
         </Router>
 
