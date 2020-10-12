@@ -124,7 +124,6 @@ export default function About() {
                             onClick={() => handleOnClick(tech.url)}
                         />
                         ))}
-                        
                     </div>
                 </Grid>
                 <Grid item xs={3}>
@@ -133,4 +132,4 @@ export default function About() {
             <Grid item xs={12}></Grid>
         </Grid>
     )
-} 
+}

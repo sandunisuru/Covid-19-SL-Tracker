@@ -2,7 +2,6 @@ import { FETCH_LATEST_NEWS, READ_LATEST } from './types';
 import { newsRef, latestRef } from '../firebase.dp';
 
 export const addNews = (news) => async dispatch  => {
-
     newsRef.push().set(news)
 }
 
@@ -22,7 +21,6 @@ export const readLatest = () => async dispatch => {
 
 export const fetchNews  = () => async dispatch => {
     newsRef.on("value", snapshot => {
-
         dispatch({
             type: FETCH_LATEST_NEWS,
             payload: snapshot.val()

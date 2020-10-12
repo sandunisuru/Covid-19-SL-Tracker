@@ -15,8 +15,6 @@ export const getAllCountries = () => dispatch => {
                 payload: data
             })
         })
-           
-
 };
 
 export const getDetailsByCountry = (country) => dispatch => {

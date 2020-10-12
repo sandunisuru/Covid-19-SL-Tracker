@@ -1,12 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
-import EventIcon from '@material-ui/icons/Event';
+import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import CardMedia from '@material-ui/core/CardMedia';
-
-
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,37 +38,29 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function Flag(props) {
-
-    const { className } = props;
-
-    const classes = useStyles();
+function Flag({ className, local_cured, imageName  }) {
+    const { root, title, media } = useStyles();
 
     return (
-        <Card
-            className={clsx(classes.root, className)}
-        >
+        <Card className={clsx(root, className)}>
             <CardContent>
-                <Grid
-                    container
-                    justify="space-between"
-                >
+                <Grid container justify="space-between">
                     <Grid item>
                         <Typography
-                            className={classes.title}
+                            className={title}
                             color="textSecondary"
                             gutterBottom
                             variant="body2"
                         >
                         </Typography>
-                        <Typography variant="h3">{props.local_cured}</Typography>
+                        <Typography variant="h3">{local_cured}</Typography>
                     </Grid>
                     <Grid item>
                         <CardMedia
                             component="img"
                             height="100"
-                            className={classes.media}
-                            image={props.imageName}
+                            className={media}
+                            image={imageName}
                         />
                     </Grid>
                 </Grid>

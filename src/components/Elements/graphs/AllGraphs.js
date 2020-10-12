@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
-import { Grid, Paper, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-
+import { Paper } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import _ from 'lodash';
-
 import PropTypes from 'prop-types';
 
 import { getDetailsByCountry, getHistoryByCountry } from '../../../actions/graphActions';
-
-import CasesReportedGraph from "./CasesReportedGraph";
-import DetailsPane from "./DetailsPane";
-
-
+import DetailsPane from './DetailsPane';
 
 class AllGraphs extends Component {
 
@@ -22,11 +15,8 @@ class AllGraphs extends Component {
         country: "Sri Lanka"
     }
 
-
     handleChange = (e) => {
-
         this.setState({ [e.target.name]: e.target.value }, this.runGetDataFunctions);
-
     }
 
     runGetDataFunctions() {
@@ -34,19 +24,11 @@ class AllGraphs extends Component {
         this.props.getHistoryByCountry(this.state.country);
     }
 
-
-
-
-
     render() {
-
-
-
-
+        const { countries, details } = this.props;
         return (
             <Paper elevation={3}>
                 <div style={{ padding: 25 }}>
-
                     <FormControl className={style.formControl} fullWidth>
                         <InputLabel htmlFor="age-native-simple">Select Country</InputLabel>
                         <Select
@@ -57,21 +39,16 @@ class AllGraphs extends Component {
                         >
                             <option aria-label="None" value="" />
                             {
-                                this.props.countries.map((item) => (
+                                countries.map((item) => (
                                     <option key={item.country} value={item.country}>{item.country}</option>
                                 ))
                             }
                         </Select>
-
                     </FormControl>
-                    <div style={{marginTop: 10}}>
-                    <DetailsPane  details={this.props.details} />
+                    <div style={{ marginTop: 10 }}>
+                        <DetailsPane details={details} />
                     </div>
-                    
-
-
                 </div>
-
             </Paper>
         );
     }
