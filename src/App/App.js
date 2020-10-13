@@ -6,8 +6,7 @@ import Routes from '../navigation/Routes';
 function App() {
   return (
     <div className="App">
-      <Appbar />
-      <Routes />
+        <Routes navigation={<Appbar />} />
     </div>
   );
 }

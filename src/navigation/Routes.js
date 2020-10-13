@@ -6,9 +6,10 @@ import AddNews from '../components/AddNews';
 import About from '../components/About';
 
 
-function Routes() {
+function Routes({ navigation }) {
     return (
         <Router>
+            { navigation }
             <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/add" exact component={AddNews}/>
