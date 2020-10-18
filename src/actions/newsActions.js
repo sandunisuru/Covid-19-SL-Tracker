@@ -1,5 +1,5 @@
 import { FETCH_LATEST_NEWS, READ_LATEST } from './types';
-import { newsRef, latestRef } from '../firebase.dp';
+import { newsRef, latestRef } from '../firebase';
 
 export const addNews = (news) => async dispatch  => {
 

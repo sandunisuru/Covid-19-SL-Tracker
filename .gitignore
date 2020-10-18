@@ -18,12 +18,10 @@
 .env.test.local
 .env.production.local
 
+.env
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#store.js
-#firebase.js
-#.firebaserc
-#firebase.json
 .firebase/hosting.YnVpbGQ.cache
