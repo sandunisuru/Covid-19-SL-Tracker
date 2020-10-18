@@ -24,37 +24,35 @@ import TotalDeathsGlobal from './Elements/Global/TotalDeaths'
 //Graphs Module Components
 import AllGraphs from './Elements/graphs/AllGraphs'
 
-
 //NewsFeed Import
 import NewsFeed from './Elements/News/NewsFeed'
 
-
-
+const INTERVAL_TIMEOUT = 300000;
 
 class Home extends Component {
 
     constructor(props){
         super(props)
-
         props.getAllCountries();
     }
 
-
     interval = setInterval(() => {
         this.props.fetchData();
-    }, 300000);
+    }, INTERVAL_TIMEOUT);
 
     componentDidMount() {
-        
         this.props.fetchData();
         this.props.readLatest();
     }
 
-
     render() {
+        const { data, countries } = this.props;
+
+        const content = countries
+            ? <AllGraphs />
+            : <Typography variant="h8" gutterBottom>Loading...</Typography>;
 
         return (
-
             <div className="App">
                 <Grid container style={{ paddingTop: 5 }} spacing={1} >
                     <div style={{ padding: 10 }}>
@@ -62,20 +60,19 @@ class Home extends Component {
                             Local Status
                         </Typography>
                     </div>
-
                     <Grid container spacing={2} item md={12}>
 
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalInfectedLocal local_cases={this.props.data.local_total_cases} last_updated={this.props.data.update_date_time} />
+                            <TotalInfectedLocal local_cases={data.local_total_cases} last_updated={data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalUnderObservationLocal under_observation={this.props.data.local_total_number_of_individuals_in_hospitals} last_updated={this.props.data.update_date_time} />
+                            <TotalUnderObservationLocal under_observation={data.local_total_number_of_individuals_in_hospitals} last_updated={data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalCuredLocal local_cured={this.props.data.local_recovered} last_updated={this.props.data.update_date_time} />
+                            <TotalCuredLocal local_cured={data.local_recovered} last_updated={data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalDeathsLocal local_deaths={this.props.data.local_deaths} last_updated={this.props.data.update_date_time} />
+                            <TotalDeathsLocal local_deaths={data.local_deaths} last_updated={data.update_date_time} />
                         </Grid>
                     </Grid>
                     <div style={{ padding: 10 }}>
@@ -84,19 +81,17 @@ class Home extends Component {
                         </Typography>
                     </div>
                     <Grid container spacing={2} item md={12}>
-
-
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalNewCasesGlobal new_cases={this.props.data.global_new_cases} last_updated={this.props.data.update_date_time} />
+                            <TotalNewCasesGlobal new_cases={data.global_new_cases} last_updated={data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalInfectedGlobal total_infection={this.props.data.global_total_cases} last_updated={this.props.data.update_date_time} />
+                            <TotalInfectedGlobal total_infection={data.global_total_cases} last_updated={data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalCuredGlobal total_cured={this.props.data.global_recovered} last_updated={this.props.data.update_date_time} />
+                            <TotalCuredGlobal total_cured={data.global_recovered} last_updated={data.update_date_time} />
                         </Grid>
                         <Grid item md={3} xs={12} spacing={2}>
-                            <TotalDeathsGlobal total_deaths={this.props.data.global_deaths} last_updated={this.props.data.update_date_time} />
+                            <TotalDeathsGlobal total_deaths={data.global_deaths} last_updated={data.update_date_time} />
                         </Grid>
                     </Grid>
                     <Grid container spacing={2} item md={12}>
@@ -106,7 +101,6 @@ class Home extends Component {
                                     Latest News Headlines
                                 </Typography>
                             </div>
-                            
                             <NewsFeed />
                         </Grid>
                         <Grid item md={8} xs={12} spacing={2}>
@@ -115,10 +109,7 @@ class Home extends Component {
                                     Global Condition and History
                                 </Typography>
                             </div>
-                            {
-                                this.props.countries?<AllGraphs />:<Typography variant="h8" gutterBottom>Loading...</Typography>
-                            }
-                           
+                            { content }
                         </Grid>
                     </Grid>
                     <Grid container spacing={2} item md={12}>
@@ -142,11 +133,12 @@ Home.prototypes = {
     getAllCountries: PropTypes.func.isRequired,
     data: PropTypes.array.isRequired
 }
+
 const mapStatetoProps = state => ({
     data: state.data.data,
     news: state.news.data,
     latest: state.news.latest,
     countries: state.graph.countries
-})
+});
 
 export default connect(mapStatetoProps, { fetchData, readLatest, getAllCountries })(Home);
