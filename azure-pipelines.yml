@@ -37,6 +37,20 @@ stages:
           command: 'custom'
           customCommand: 'run build'
 
+      - task: replacetokens@3
+        inputs:
+          rootDirectory: 'build'
+          targetFiles: '**/*.js'
+          encoding: 'auto'
+          writeBOM: true
+          escapeType: 'none'
+          actionOnMissing: 'warn'
+          keepToken: false
+          tokenPrefix: '#{'
+          tokenSuffix: '}#'
+          useLegacyPattern: false
+          enableTelemetry: true
+
       - task: CopyFiles@2
         displayName: 'Copy Build Files'
         inputs:
