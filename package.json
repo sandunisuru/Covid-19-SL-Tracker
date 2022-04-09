@@ -11,7 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "firebase": "^7.23.0",
     "lodash": "^4.17.19",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",
