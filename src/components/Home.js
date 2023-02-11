@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions/dataActions'
 import { readLatest } from '../actions/newsActions';
-import { getAllCountries } from '../actions/graphActions';
+//import { getAllCountries } from '../actions/graphActions';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -21,24 +21,11 @@ import TotalNewCasesGlobal from './Elements/Global/TotalNewCases'
 import TotalCuredGlobal from './Elements/Global/TotalCured'
 import TotalDeathsGlobal from './Elements/Global/TotalDeaths'
 
-//Graphs Module Components
-import AllGraphs from './Elements/graphs/AllGraphs'
-
-
 //NewsFeed Import
 import NewsFeed from './Elements/News/NewsFeed'
 
 
-
-
 class Home extends Component {
-
-    constructor(props){
-        super(props)
-
-        props.getAllCountries();
-    }
-
 
     interval = setInterval(() => {
         this.props.fetchData();
@@ -109,17 +96,6 @@ class Home extends Component {
                             
                             <NewsFeed />
                         </Grid>
-                        <Grid item md={8} xs={12} spacing={2}>
-                            <div style={{ padding: 10 }}>
-                                <Typography variant="h5" gutterBottom>
-                                    Global Condition and History
-                                </Typography>
-                            </div>
-                            {
-                                this.props.countries?<AllGraphs />:<Typography variant="h8" gutterBottom>Loading...</Typography>
-                            }
-                           
-                        </Grid>
                     </Grid>
                     <Grid container spacing={2} item md={12}>
                         <Grid item md={12} xs={12} spacing={2}>
@@ -139,14 +115,12 @@ class Home extends Component {
 Home.prototypes = {
     fetchData: PropTypes.func.isRequired,
     readLatest: PropTypes.func.isRequired,
-    getAllCountries: PropTypes.func.isRequired,
     data: PropTypes.array.isRequired
 }
 const mapStatetoProps = state => ({
     data: state.data.data,
     news: state.news.data,
-    latest: state.news.latest,
-    countries: state.graph.countries
+    latest: state.news.latest
 })
 
-export default connect(mapStatetoProps, { fetchData, readLatest, getAllCountries })(Home);
+export default connect(mapStatetoProps, { fetchData, readLatest })(Home);
